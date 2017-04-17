@@ -11,6 +11,17 @@ services:
      - "80:80"
      - "443:443"
 
+   
+  ldap:
+    build: ./ldap/
+    networks:
+     - back
+
+  sp:
+    build: ./sp/ 
+    networks:
+     - back
+
   idp:
     build: ./idp/
     depends_on: 
@@ -23,31 +34,32 @@ services:
      - "4443"
     networks:
      - back
+    volumes:
+     - ~/.m2:/root/.m2
 
-   
-  ldap:
-    build: ./ldap/
+  cas-server:
+    build: ./cas-server/ 
     networks:
      - back
+    ports:
+     - 8081:8081
+    volumes:
+     - ~/.m2:/root/.m2
+     - /dev/urandom:/dev/random
 
-  sp:
-    build: ./sp/ 
-    networks:
-     - back
+  # simplesamlphp:
+  #   build: ./simplesamlphp/
+  #   links:
+  #     - httpd-proxy:idptestbed
+  #   networks:
+  #    - back
 
-  simplesamlphp:
-    build: ./simplesamlphp/
-    links:
-      - httpd-proxy:idptestbed
-    networks:
-     - back
-
-  php-cas:
-    build: ./php-cas/
-    links:
-      - httpd-proxy:idptestbed
-    networks:
-     - back
+  # php-cas:
+  #   build: ./php-cas/
+  #   links:
+  #     - httpd-proxy:idptestbed
+  #   networks:
+  #    - back
 
 networks:
   front:
