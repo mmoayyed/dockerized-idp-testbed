@@ -2,7 +2,7 @@ FROM centos:centos7
 
 MAINTAINER mmoayyed@unicon.net
 
-RUN yum install -y java which
+RUN yum install -y java-devel which
 
 COPY cas/ /opt/cas
 

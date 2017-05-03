@@ -60,6 +60,9 @@ case "$1" in
 "run")
     run "$@"
     ;;
+"debug")
+    debug "$@"
+    ;;
 *)
     help
     ;;
