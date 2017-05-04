@@ -8,4 +8,4 @@ COPY cas/ /opt/cas
 
 WORKDIR /opt/cas
 
-CMD export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::"); ./build.sh
+CMD export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::"); ./build.sh debug
