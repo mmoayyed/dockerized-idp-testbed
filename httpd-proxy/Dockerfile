@@ -10,6 +10,6 @@ COPY var-www-html/ /var/www/html/
 
 RUN chmod +x /usr/local/bin/httpd-foreground
 
-EXPOSE 80 443
+EXPOSE 80 443 8443
 
 CMD ["httpd-foreground"]

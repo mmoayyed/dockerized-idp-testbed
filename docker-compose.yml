@@ -10,6 +10,7 @@ services:
     ports:
      - "80:80"
      - "443:443"
+     - "8443:8443"
 
    
   ldap:
@@ -23,6 +24,8 @@ services:
     build: ./sp/ 
     networks:
      - back
+    links:
+     - "httpd-proxy:idptestbed"
 
   idp:
     build: ./idp/
@@ -34,6 +37,7 @@ services:
      - JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD=password
     expose: 
      - "4443"
+     - "8443"
     networks:
      - back
     volumes:
