@@ -62,12 +62,12 @@ services:
   #   networks:
   #    - back
 
-  # php-cas:
-  #   build: ./php-cas/
-  #   links:
-  #     - httpd-proxy:idptestbed
-  #   networks:
-  #    - back
+  php-cas:
+    build: ./php-cas/
+    links:
+      - httpd-proxy:idptestbed
+    networks:
+     - back
 
 networks:
   front:

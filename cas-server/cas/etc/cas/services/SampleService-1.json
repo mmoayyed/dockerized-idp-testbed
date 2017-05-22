@@ -4,5 +4,8 @@
     "name": "SampleService",
     "id": 1,
     "description": "Sample CAS client application",
-    "evaluationOrder": 0
+    "evaluationOrder": 0,
+    "attributeReleasePolicy" : {
+        "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
+    }
 }

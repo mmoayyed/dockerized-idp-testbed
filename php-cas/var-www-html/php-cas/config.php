@@ -27,7 +27,7 @@ $phpcas_path = '/usr/share/pear/';
 $cas_host = 'idptestbed';
 
 // Context of the CAS Server
-$cas_context = '/idp/profile/cas';
+$cas_context = '/cas';
 
 // Port of your CAS server. Normally for a https server it's 443
 $cas_port = 443;

@@ -76,6 +76,12 @@
             <artifactId>cas-server-support-trusted-webflow</artifactId>
             <version>${cas.version}</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <properties>
