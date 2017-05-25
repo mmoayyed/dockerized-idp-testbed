@@ -14,10 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.webflow.execution.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
@@ -54,10 +51,6 @@ public class PrincipalFromRequestRemoteUserNonInteractiveCredentialsAction exten
         if (StringUtils.hasText(remoteUser)) {
             LOGGER.debug("Remote User [{}] found in HttpServletRequest", remoteUser);
 
-            Map<String, Object> attributes = new HashMap<>();
-            attributes.put("here", "there");
-
-            /*
             Map<String, Object> attributes = Collections.list(request
                     .getHeaderNames())
                     .stream()
@@ -65,8 +58,7 @@ public class PrincipalFromRequestRemoteUserNonInteractiveCredentialsAction exten
                     .filter(t -> !t.startsWith("AJP_Shib-"))
                     .filter(t -> request.getHeader(t) != null && !"".equals(request.getHeader(t)))
                     .map(t -> t.replaceAll("AJP_", ""))
-                    .collect(toMap(Function.identity(), t -> request.getHeader("AJP_" + t).split("(?<!\\\\);")));
-                    */
+                    .collect(toMap(Function.identity(), t -> Arrays.asList(request.getHeader("AJP_" + t).split("(?<!\\\\);"))));
 
             return new PrincipalBearingCredential(this.principalFactory.createPrincipal(remoteUser, attributes));
         }

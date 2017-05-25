@@ -23,7 +23,7 @@ require_once $phpcas_path . '/CAS.php';
 phpCAS::setDebug();
 
 // Initialize phpCAS
-phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
+phpCAS::client(CAS_VERSION_3_0, $cas_host, $cas_port, $cas_context);
 phpCAS::setExtraCurlOption( CURLOPT_SSLVERSION, 6 );
 
 // For production use set the CA certificate that is the issuer of the cert
@@ -57,6 +57,22 @@ if (isset($_REQUEST['logout'])) {
     
     <p>the user's login is <b><?php echo phpCAS::getUser(); ?></b>.</p>
     <p>phpCAS version is <b><?php echo phpCAS::getVersion(); ?></b>.</p>
+    <h3>User Attributes</h3>
+<ul>
+<?php
+foreach (phpCAS::getAttributes() as $key => $value) {
+    if (is_array($value)) {
+        echo '<li>', $key, ':<ol>';
+        foreach ($value as $item) {
+            echo '<li><strong>', $item, '</strong></li>';
+        }
+        echo '</ol></li>';
+    } else {
+        echo '<li>', $key, ': <strong>', $value, '</strong></li>' . PHP_EOL;
+    }
+}
+    ?>
+</ul>
     <p><a href="/">Main Menu</a></p>
   </body>
 </html>
